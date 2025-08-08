@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/inventory">Inventory</a> |
+        <a href="/usage">Usage Trends</a>
+    </nav>
+
+    <h1>📦 Inventory</h1>
+
+    {% if alerts %}
+    <div class="alert">
+        <h3>⚠ Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form action="/add_item" method="POST">
+        <input type="text" name="item_name" placeholder="Item name" required>
+        <input type="number" name="stock" placeholder="Stock" min="1" required>
+        <input type="date" name="expiry_date" required>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <ul>
+        {% for item in items %}
+        <li>
+            {{ item['name'] }} - Stock: {{ item['stock'] }} - Expiry: {{ item['expiry_date'] }}
+            <form action="/use_item/{{ item['id'] }}" method="POST" style="display:inline;">
+                <button type="submit" {% if item['stock'] == 0 %}disabled{% endif %}>Use 1</button>
+            </form>
+            <form action="/increase_stock/{{ item['id'] }}" method="POST" style="display:inline;">
+                <button type="submit">Add 1</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
