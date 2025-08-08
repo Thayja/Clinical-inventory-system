@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clinic Inventory</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>🩺 Clinic Inventory Dashboard</h1>
+
+    {% if alerts %}
+    <div style="background:#fdd;padding:10px;">
+        <h3>⚠ Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li style="color:red;">{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <h2>Add New Item</h2>
+    <form action="/add_item" method="POST">
+        <input type="text" name="item_name" placeholder="Item name" required>
+        <input type="number" name="stock" placeholder="Stock" required>
+        <input type="date" name="expiry_date" required>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <h2>📦 Inventory List</h2>
+    <ul>
+        {% for item in items %}
+        <li>
+            {{ item[1] }} - Stock: {{ item[2] }} - Expiry: {{ item[3] }}
+            <form action="/use_item/{{ item[0] }}" method="POST" style="display:inline;">
+                <button type="submit">Use 1</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>📊 Usage Trends</h2>
+    <ul>
+        {% for trend in trends %}
+        <li>{{ trend }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
