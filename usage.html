@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usage Trends</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <a href="/inventory">Inventory</a> |
+        <a href="/usage">Usage Trends</a>
+    </nav>
+
+    <h1>📊 Usage Trends (Last 7 Days)</h1>
+
+    {% if usage_data %}
+    <ul>
+        {% for row in usage_data %}
+        <li>{{ row['name'] }} - Used {{ row['used_count'] }} times</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No usage data yet.</p>
+    {% endif %}
+</body>
+</html>
