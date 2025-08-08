@@ -29,7 +29,7 @@ The Clinic Inventory Management System is a web-based application that helps cli
 4. Open your browser and visit `http://127.0.0.1:5000`
 
 ## Contributors
-- Team Member 1 – Role
-- Team Member 2 – Role
-- Team Member 3 – Role
-- Team Member 4 – Role
+- Team Member 1 – Project Lead & Backend Developer (Python, Flask, Database)
+- Team Member 2 – Frontend Developer (HTML, CSS, JavaScript, UI Design)
+- Team Member 3 – Database Manager (MySQL, Data Modeling, Inventory Logic)
+- Team Member 4 – Tester & Documentation (Testing, Bug Fixing, README & Reports)
